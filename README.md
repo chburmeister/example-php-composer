@@ -3,7 +3,7 @@ Usage
 
 Run the app
 -----------
-```
+```bash
 christoph@hephaistos:example-php$ /usr/bin/php7.0 src/main/php/index.php hallo
 hello
 christoph@hephaistos:example-php$ /usr/bin/php7.0 src/main/php/index.php blubb
@@ -12,13 +12,21 @@ not in dictionary
 
 Install dependencies
 --------------------
+First make sure, that you have “installed” (i.e. copied) the composer.phar to $COMPOSER_HOME according to this manual: https://getcomposer.org/download/
+After successful installation, you can call composer this way:
+```bash
+christoph@hephaistos:example-php$ /usr/bin/php7.0 $COMPOSER_HOME/composer.phar --version
+Composer version 1.2.0 2016-07-19 01:28:52
 ```
-christoph@hephaistos:example-php$ /usr/bin/php7.0 $COMPOSER_HOME/composer.phar $
+and now you can install the dependencies in project-local vendor directory via:
+```bash
+christoph@hephaistos:example-php$ /usr/bin/php7.0 $COMPOSER_HOME/composer.phar update
 ```
+Composer has loaded now the PHPUnit and all transitive dependencies to $BASE_DIR/vendor. There is also a composer.lock file created. This file represents something like a pip freeze and contains all versions of composer installed transitive dependencies. Keeping this file might be helpful reproducing build if some dependencies are using kind of “latest” references. 
 
 Run the tests
 -------------
-```
+```bash
 christoph@hephaistos:example-php$ vendor/phpunit/phpunit/phpunit --debug --log-junit=php-unit.xml src/test/php
 PHPUnit 5.5.0 by Sebastian Bergmann and contributors.
  
